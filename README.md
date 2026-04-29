@@ -1,41 +1,43 @@
-# 微信飞书写表助手 (WeChat + Feishu Bitable)
+# 微信飞书写表助手（WeChat + Feishu Bitable）
 
-这个仓库是一个“可直接公开”的最小版本：
-- 不包含任何密钥
+把你在微信/企业微信里收到的“非结构化文本”（订单、报名、接龙、备注等），自动写入飞书多维表，并保留可追溯的台账。
+
+这个 public 包是“可公开发布”的最小版本：
+- 不包含任何密钥（API Key / App Secret 等都需要你自己填写）
 - 不包含任何真实表/真实台账数据
 
-它的作用：把微信/企业微信里的消息写入飞书多维表（待确认），并支持确认/作废与导出台账 CSV。
+## 这个工具能做什么
 
-## 快速开始（先按这个跑通）
+- 登记 1 张或多张飞书多维表（发链接即可登记）
+- 直接把聊天消息写入“最合适的表”（写入为“待确认”）
+- 你回复“确认/作废”即可批量确认或作废最新一条
+- 你说“台账”即可导出台账 CSV（用于审计与复盘）
 
-完整说明在：`solutions/formflow-agent/docs/README.md`
+## 你怎么用（像跟人说话一样）
 
-最短步骤：
+你不需要背很多指令。常用就这几类：
 
-1. 复制并填写环境变量
+1) 发飞书多维表链接
+- 作用：登记表（必要时会提示你确认替换/切换）
 
-- 复制：`solutions/formflow-agent/.env.example` -> `solutions/formflow-agent/.env`
-- 在 `.env` 里填写：
-  - `FEISHU_APP_ID`
-  - `FEISHU_APP_SECRET`
-  - `DEEPSEEK_API_KEY`（这里只是“模型接口 API Key”的变量名）
-  - `SMALLBIZ_MODEL_BASE_URL`
-  - `SMALLBIZ_MODEL`
+2) 直接发一段订单/信息
+- 作用：自动识别写入哪个表，写入为“待确认”
 
-2. 启动
+3) 你想看有哪些表
+- 说：`列表`
 
-在仓库根目录运行：
+4) 你想确认或作废
+- 说：`确认`（确认全部待确认）
+- 说：`作废`（作废最新一条待确认）
 
-```bash
-FORMFLOW_ENV_FILE="solutions/formflow-agent/.env" ./solutions/formflow-agent/scripts/run-gateway-wecom.sh
-```
+5) 你想导出台账
+- 说：`台账` / `账本` / `查看台账`
 
-3. 在微信/企微里测试
+## 安装与启动
 
-- 发飞书多维表链接：登记当前表
-- 发一条订单文本：写入待确认
-- 发 `台账`：导出台账 CSV
+完整安装/配置/启动步骤见：`solutions/formflow-agent/docs/README.md`
 
-## 注意
+如果你是第一次接触飞书开放平台或 OpenClaw：
+- OpenClaw 文档：<https://docs.openclaw.ai/>
+- 飞书开放平台：<https://open.feishu.cn/>
 
-- 这是依托 OpenClaw（小龙虾）运行的工程；如果你完全没装过 OpenClaw，请先按 `solutions/formflow-agent/docs/README.md` 的“准备事项”走。
