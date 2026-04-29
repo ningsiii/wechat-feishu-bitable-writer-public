@@ -223,7 +223,14 @@ def cmd_ledger_export(args: argparse.Namespace) -> Dict[str, Any]:
     rows = _filter_events_by_days(rows, int(args.days))
 
     export_dir = Path(args.out_dir)
-    export_dir.mkdir(parents=True, exist_ok=True)
+    try:
+        export_dir.mkdir(parents=True, exist_ok=True)
+    except PermissionError:
+        # Some environments (e.g., restricted mounts) may deny creating directories under the repo.
+        # Fall back to /tmp so export still works.
+        export_dir = Path("/tmp/formflow-agent/exports")
+        export_dir.mkdir(parents=True, exist_ok=True)
+
     ts = datetime.now().astimezone().strftime("%Y%m%d_%H%M%S")
     out_path = export_dir / f"ledger_{ts}.csv"
 
