@@ -109,3 +109,55 @@ FORMFLOW_ENV_FILE="solutions/formflow-agent/.env" ./solutions/formflow-agent/scr
 - `FEISHU_APP_SECRET`
 
 然后重启网关再试。
+
+## 附：飞书多维表链接里的 app_token / table_id 是什么
+
+下面这段摘自作者的调研笔记（用于避免误把资源标识当成密钥）：
+
+## 附：飞书多维表格（Bitable）链接里哪些是 App Token / Table ID
+
+当你拿到一条飞书多维表格（Base/Bitable）的网页链接时，常见格式类似：
+
+```
+https://kcn6wzbx5fga.feishu.cn/base/<APP_TOKEN>?table=<TABLE_ID>&view=<VIEW_ID>
+```
+
+以示例链接为例：
+
+```
+https://kcn6wzbx5fga.feishu.cn/base/CBOUbQlH4atVSvsYobicPT8ynzc?table=tblrsJe4T038fN1r&view=vewYp68pzS
+```
+
+- `APP token`（也称 `app_token`）：`/base/` 后面紧跟的那一段
+  - 本例中为：`CBOUbQlH4atVSvsYobicPT8ynzc`
+- `table ID`（也称 `table_id`）：URL 查询参数 `table=` 后面那一段
+  - 本例中为：`tblrsJe4T038fN1r`
+- `view ID`：URL 查询参数 `view=` 后面那一段（用于打开具体视图）
+  - 本例中为：`vewYp68pzS`
+
+> 备注：`APP token` / `table ID` 都是“资源标识”，不是密钥；真正的密钥是飞书自建应用的 `App Secret`。
+
+## 常见报错：权限不足
+
+下面这段摘自作者的调研笔记（最常见写入失败原因）：
+
+### 10.1 权限不足
+
+写入失败：飞书应用没有该表的编辑权限
+表格：{表名}
+链接：{open_url}
+
+请先在飞书里把该表授权给应用可编辑，然后重试。
+
+### 10.2 链接无效
+
+登记失败：这不是可用的飞书多维表链接
+请发送包含 /base/ 或 /wiki/ 的飞书多维表链接重试。
+
+### 10.3 网络/超时/未知失败
+
+写入失败：网络超时或服务暂时不可用
+表格：{表名}
+链接：{open_url}
+
+请稍后重试。
