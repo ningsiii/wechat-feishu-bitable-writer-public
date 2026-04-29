@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+.env
+.env.*
+!.env.example
+solutions/formflow-agent/config/bindings.json
+solutions/formflow-agent/data/
+solutions/formflow-agent/exports/

@@ -1,0 +1,37 @@
+{
+  "active_binding": "示例表",
+  "bindings": [
+    {
+      "name": "示例表",
+      "display_name": "示例表 / 数据表",
+      "app_name": "示例表",
+      "table_name": "数据表",
+      "provider": "feishu",
+      "app_token": "YOUR_APP_TOKEN",
+      "table_id": "YOUR_TABLE_ID",
+      "open_url": "https://example.feishu.cn/base/YOUR_APP_TOKEN?table=YOUR_TABLE_ID&view=YOUR_VIEW_ID",
+      "auto_create_fields": true,
+      "auto_map_fields": true,
+      "alias_map": {},
+      "columns": {
+        "记录ID": "id",
+        "创建时间": "created_at",
+        "确认状态": "__confirm_state",
+        "标题": "title",
+        "类别": "category",
+        "客户": "contact_name",
+        "联系方式": "contact_handle",
+        "商品/服务": "items",
+        "时间": "delivery_time",
+        "地址": "delivery_address",
+        "金额": "amount",
+        "状态": "status",
+        "下一步动作": "next_action",
+        "跟进时间": "follow_up_at",
+        "备注": "notes"
+      }
+    }
+  ],
+  "pending_replace": {}
+}
+

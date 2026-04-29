@@ -1,0 +1,8 @@
+{
+  "version": "v1.5-multi-table-phase1",
+  "single_table_mode": false,
+  "enable_organize": false,
+  "enable_reminder": false,
+  "enable_multi_table": true,
+  "enable_wecom_push": false
+}
