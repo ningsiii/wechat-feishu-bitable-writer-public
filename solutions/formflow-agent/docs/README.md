@@ -71,3 +71,41 @@ FORMFLOW_ENV_FILE="solutions/formflow-agent/.env" ./solutions/formflow-agent/scr
 - 台账导出目录（运行时）：`solutions/formflow-agent/exports/`
 
 注：上述运行时文件建议不要提交到 git（里面可能包含业务数据或密钥）。
+
+
+## 6. 飞书开放平台：创建应用与授权（按这几步做）
+
+这一步的目标只有两个：
+1) 拿到 `FEISHU_APP_ID` / `FEISHU_APP_SECRET`（用于换取 tenant_access_token）
+2) 让你的飞书应用对目标多维表有权限（否则会写入失败）
+
+### 6.1 创建飞书应用并拿到凭证
+
+1. 打开飞书开放平台：<https://open.feishu.cn/>
+2. 创建「企业自建应用」
+3. 在应用的“凭证与基础信息”里找到并复制：
+   - App ID  -> 填到 `.env` 的 `FEISHU_APP_ID`
+   - App Secret -> 填到 `.env` 的 `FEISHU_APP_SECRET`
+
+说明：
+- 飞书多维表链接里的 `app_token` / `table_id` 是“资源标识”，不是密钥。
+- 真正的密钥是你应用的 `App Secret`。
+
+### 6.2 给多维表授权（非常常见的坑）
+
+如果你看到类似“写入失败：飞书应用没有该表的权限”，通常就是这里没做。
+
+建议做法（原则）：
+- 你需要在飞书里把目标 Base/Bitable 授权给你的应用，至少具备“编辑/写入记录”的权限。
+
+不同组织的后台入口名称可能略有差异，你可以用下面的关键词搜索教程：
+- “飞书 多维表 应用 授权 权限 编辑”
+- “飞书 开放平台 应用 多维表 权限”
+
+### 6.3 把信息填入 `.env`
+
+在 `solutions/formflow-agent/.env` 中填写：
+- `FEISHU_APP_ID`
+- `FEISHU_APP_SECRET`
+
+然后重启网关再试。
