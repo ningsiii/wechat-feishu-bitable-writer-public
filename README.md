@@ -35,7 +35,7 @@
 
 ## 安装与启动
 
-完整安装/配置/启动步骤见：`solutions/formflow-agent/docs/README.md`
+完整安装/配置/启动步骤见：`solutions/formflow-agent/docs/SETUP.md`
 
 如果你是第一次接触飞书开放平台或 OpenClaw：
 - OpenClaw 文档：<https://docs.openclaw.ai/>
